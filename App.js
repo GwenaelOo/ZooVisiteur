@@ -1,13 +1,87 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+
+import ScreenEvent from './Sources/Screens/ScreenEvent/ScreenEvent'
+import ScreenGwenPlayground from './Sources/Screens/ScreenGwenPlayground/ScreenGwenPlayground'
+import ScreenTedPlayground from './Sources/Screens/ScreenTedPlayground/ScreenTedPlayground'
+
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Welcome to the APP',
+  };
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
+
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-around' }}>
+
+        <Button
+          title="Aller à la page Event"
+          onPress={() => {
+            this.props.navigation.navigate('ScreenEvent', {
+            });
+          }}
+        />
+         <Button
+          title="Aller à la page Ted Playground"
+          onPress={() => {
+            this.props.navigation.navigate('ScreenTedPlayground', {
+            });
+          }}
+        />
+         <Button
+          title="Aller à la page GwenPlayground"
+          onPress={() => {
+            this.props.navigation.navigate('ScreenGwenPlayground', {
+            });
+          }}
+        />
+      </View>
+    );
+  }
+}
+
+const Navigator = createStackNavigator({
+  // For each screen that you can navigate to, create a new entry like this:
+  Home: {
+    screen: HomeScreen,
+  },
+  ScreenEvent: {
+    screen: ScreenEvent
+  },
+  ScreenTedPlayground: {
+    screen: ScreenTedPlayground
+  },
+  ScreenGwenPlayground: {
+    screen: ScreenGwenPlayground
+  },
+
+
+ 
+},{
+  initialRouteName: 'Home',
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  }
+});
+
+
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+    return <Navigator />;
   }
 }
 
