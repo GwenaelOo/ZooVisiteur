@@ -2,10 +2,21 @@ import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
+// IMPORTATION DES ECRANS
+
 import ScreenEvent from './Sources/Screens/ScreenEvent/ScreenEvent'
 import ScreenGwenPlayground from './Sources/Screens/ScreenGwenPlayground/ScreenGwenPlayground'
 import ScreenTedPlayground from './Sources/Screens/ScreenTedPlayground/ScreenTedPlayground'
 
+// IMPORTATION DES FICHIERS DE CONFIGURATION
+
+import { firebaseConfig } from './config/config'
+
+// IMPORTATION DES LIBRAIRIES
+
+import * as firebase from 'firebase';
+
+firebase.initializeApp(firebaseConfig);
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
